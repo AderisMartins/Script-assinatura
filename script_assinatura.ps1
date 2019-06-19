@@ -103,8 +103,13 @@ $fullPathtxt = "$LocalSignaturePath\$SignatureName.txt"
 #Set Signature as default
 
 #Enforce embedded pictures in outlook
-if (!(Test-Path -Path C:\ProgramData\Microsoft\Office\16.0\Outlook\Options\Mail)) { New-Item -Path C:\ProgramData\Microsoft\Office\16.0\Outlook\Options\Mail -ItemType Directory -Force }
-New-ItemProperty C:\ProgramData\Microsoft\Office\Outlook\Options\Mail -Name 'Send Pictures With Document' -Value 1 -PropertyType 4 -Force
+#if (!(Test-Path -Path C:\ProgramData\Microsoft\Office\16.0\Outlook\Options\Mail)) { New-Item -Path C:\ProgramData\Microsoft\Office\16.0\Outlook\Options\Mail -ItemType Directory -Force }
+#New-ItemProperty C:\ProgramData\Microsoft\Office\Outlook\Options\Mail -Name 'Send Pictures With Document' -Value 1 -PropertyType 4 -Force
+
+if (!(Test-Path -Path HKCU:\Software\Microsoft\Office\15.0\Outlook\Options\Mail)) { New-Item -Path HKCU:\Software\Microsoft\Office\15.0\Outlook\Options\Mail -ItemType Directory -Force }
+New-ItemProperty HKCU:\Software\Microsoft\Office\15.0\Outlook\Options\Mail -Name 'Send Pictures With Document' -Value 1 -PropertyType 4 -Force
+if (!(Test-Path -Path HKCU:\Software\Microsoft\Office\16.0\Outlook\Options\Mail)) { New-Item -Path HKCU:\Software\Microsoft\Office\16.0\Outlook\Options\Mail -ItemType Directory -Force }
+New-ItemProperty HKCU:\Software\Microsoft\Office\16.0\Outlook\Options\Mail -Name 'Send Pictures With Document' -Value 1 -PropertyType 4 -Force
 
 # check Office 2016 is installed
 If (Test-Path -Path'C:\Program Files (x86)\Microsoft Office') 
